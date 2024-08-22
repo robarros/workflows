@@ -11,6 +11,13 @@ jobs:
   build:
     runs-on: ubuntu-latest
     steps:
+      
+      - name: Verify Docker Image Input
+        run: |
+          if [ -z "${{ inputs.docker_image }}" ]; then
+            echo "Docker image input is required."
+            exit 1
+          fi
 
       - name: Checkout code
         uses: actions/checkout@v4
@@ -23,7 +30,7 @@ jobs:
         with:
           username: ${{ secrets.DOCKER_USERNAME }}
           password: ${{ secrets.DOCKER_PASSWORD }}
-        
+
       - name: Print Image Tag
-        run: echo "Using Docker image:" ${{ inputs.docker_image }}
+        run: echo "The Docker image is:" ${{ inputs.docker_image }}
 
