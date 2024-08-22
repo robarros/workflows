@@ -25,4 +25,4 @@ jobs:
           password: ${{ secrets.DOCKER_PASSWORD }}
 
       - name: Print Image Tag
-        run: echo "The Docker image is:"robarros/my-python-app/${{ inputs.image-tag }}
+        run: echo "The Docker image is:"my-python-app/${{ inputs.image-tag }}
