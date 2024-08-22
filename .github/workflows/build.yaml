@@ -34,8 +34,8 @@ jobs:
       - name: Build Docker image
         id: build
         run: |
-          IMAGE_NAME="robarros/my-python-app"
-          IMAGE_TAG="${{ steps.tag.outputs.TAG }}"
+          echo "IMAGE_NAME="robarros/my-python-app" >> $GITHUB_OUTPUT
+          echo "IMAGE_TAG="${{ steps.tag.outputs.TAG }}" > $GITHUB_OUTPUT
           echo "A TAG da Imagem: $IMAGE_TAG"
           echo "Nome da Imagem: $IMAGE_NAME:$IMAGE_TAG"
           docker build -t $IMAGE_NAME:$IMAGE_TAG .
