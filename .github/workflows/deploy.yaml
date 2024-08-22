@@ -1,0 +1,26 @@
+name: Deploy
+
+on:
+  workflow_call:
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Set up Docker Buildx
+        uses: docker/setup-buildx-action@v2
+
+      - name: Generate Image Tag
+        id: tag    
+        run: |
+            echo "TAG=$(echo $GITHUB_SHA | cut -c1-7)" >> $GITHUB_OUTPUT
+        
+      - name: Print Image Tag
+        run: echo "O Valor da Variavel é ${{ steps.tag.outputs.TAG }}"
+
+
+
