@@ -3,7 +3,7 @@ name: Deploy
 on:
   workflow_call:
     inputs:
-      docker_image:
+      image-tag:
         required: true
         type: string
 
@@ -25,4 +25,4 @@ jobs:
           password: ${{ secrets.DOCKER_PASSWORD }}
 
       - name: Print Image Tag
-        run: echo "The Docker image is:" ${{ inputs.docker_image }}
+        run: echo "The Docker image is:" ${{ inputs.image-tag }}
