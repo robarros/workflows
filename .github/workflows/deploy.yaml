@@ -12,13 +12,6 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       
-      - name: Verify Docker Image Input
-        run: |
-          if [ -z "${{ inputs.docker_image }}" ]; then
-            echo "Docker image input is required."
-            exit 1
-          fi
-
       - name: Checkout code
         uses: actions/checkout@v4
 
@@ -34,3 +27,8 @@ jobs:
       - name: Print Image Tag
         run: echo "The Docker image is:" ${{ inputs.docker_image }}
 
+      - name: Save Docker Image Tag to File
+        run: echo "${{ inputs.docker_image }}" > docker_image.txt
+
+      - name: Display Docker Image Tag
+        run: cat docker_image.txt
