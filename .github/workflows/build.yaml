@@ -25,7 +25,7 @@ jobs:
       - name: Generate Image Tag
         id: tag    
         run: |
-            echo "TAG=$(echo $GITHUB_SHA | cut -c1-7)" >> $GITHUB_OUTPUT
+          echo "TAG=$(echo $GITHUB_SHA | cut -c1-8)" >> $GITHUB_OUTPUT
 
       - name: Build Docker image
         id: build
@@ -43,3 +43,4 @@ jobs:
           IMAGE_NAME="${{ secrets.DOCKER_USERNAME }}/my-python-app"
           TAG="${{ steps.tag.outputs.TAG }}"
           echo "docker-image=$IMAGE_NAME:$TAG" >> $GITHUB_OUTPUT
+          echo "Valor do docker-image enviado para o output: $IMAGE_NAME:$TAG"
